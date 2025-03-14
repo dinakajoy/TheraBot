@@ -1,40 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# TheraBot - An AI Therapist Chatbot
 
-## Getting Started
+An AI-powered web application designed to provide emotional support and mental health guidance using OpenAI API.
 
-First, run the development server:
+## Features
+- **Conversational AI:** Powered by GPT-4-turbo (OpenAI)
+- **Sentiment Analysis:** Detects user emotions
+- **Responsive Web Interface:** Built with Next.js and TailwindCSS
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech Stack
+- **Frontend:** Next.js, TypeScript, TailwindCSS
+- **Backend:** Next.js
+- **AI Models:** OpenAI GPT-4-turbo
+- **NLP Tools:** Sentiment.js
+
+## Installation
+
+### Clone the Repository
+```sh
+git clone https://github.com/dinakajoy/TheraBot.git ai-therapist-chatbot
+cd ai-therapist-chatbot
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install Dependencies
+```sh
+npm install
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Set Up Environment Variables
+Create a `.env` file in the root directory and add:
+```sh
+OPENAI_API_KEY=your_openai_api_key
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Run the Application
+#### Development Mode
+```sh
+npm run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+#### Production Mode
+```sh
+npm run build && npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How It Works
+1. User inputs a message.
+2. **Sentiment Analysis** determines mood (positive, negative, neutral).
+3. **AI Model (GPT-4-turbo)** generates an appropriate response.
+4. Response is displayed in a chat UI.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+---
+**Disclaimer:** This chatbot is not a substitute for professional mental health support. If you need help, please consult a licensed therapist.
