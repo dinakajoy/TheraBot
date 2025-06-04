@@ -61,7 +61,6 @@ export default async function handler(
       role: "user",
       content: `Tone: ${tone}. Message: ${message}`,
     };
-    
 
     const moderationRes = await openai.moderations.create({ input: message });
     const [results] = moderationRes.results;
@@ -75,11 +74,7 @@ export default async function handler(
 
     const response = await openai.chat.completions.create({
       model: "gpt-4-turbo",
-      messages: [
-        systemMessage,
-        ...history,
-        { role: "user", content: `Tone: ${tone}. Message: ${message}` },
-      ],
+      messages: [systemMessage, ...history, userMessage],
       temperature: 0.7,
       max_tokens: 500,
     });
