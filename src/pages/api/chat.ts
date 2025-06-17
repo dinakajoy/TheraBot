@@ -10,6 +10,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (req.method !== "POST") {
+    res.setHeader("Allow", ["POST"]);
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
+
   try {
     const { message, history } = req.body;
 
@@ -20,11 +25,9 @@ export default async function handler(
     const MAX_CHARS = 200;
 
     if (message.length > MAX_CHARS) {
-      return res
-        .status(400)
-        .json({
-          error: "Message too long. Please keep it under 200 characters.",
-        });
+      return res.status(400).json({
+        error: "Message too long. Please keep it under 200 characters.",
+      });
     }
 
     // Basic check to block code-related requests
