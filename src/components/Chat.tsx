@@ -17,7 +17,8 @@ export default function Chat() {
     setLoading(true);
 
     try {
-      const history = messages.map((m) => ({
+      // Send last 6 message history
+      const history = messages.slice(-6).map((m) => ({
         role: m.role,
         content: m.content,
       }));
@@ -67,8 +68,12 @@ export default function Chat() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type your message..."
+          maxLength={200}
           className="w-full p-2 border border-blue-300 rounded mt-2 text-gray-700"
         />
+        <div className="text-sm text-gray-500 text-right mt-1">
+          {message.length}/200
+        </div>
         {error && (
           <p className="my-2 text-red-700 p-2 bg-red-100 rounded">⚠️ {error}</p>
         )}

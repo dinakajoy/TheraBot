@@ -21,6 +21,16 @@ export default async function handler(
       return res.status(400).json({ error: "Valid message is required" });
     }
 
+    const MAX_CHARS = 200;
+
+    if (message.length > MAX_CHARS) {
+      return res
+        .status(400)
+        .json({
+          error: "Message too long. Please keep it under 200 characters.",
+        });
+    }
+
     // Basic check to block code-related requests
     const forbiddenKeywords = [
       "code",
@@ -51,10 +61,17 @@ export default async function handler(
     const systemMessage = {
       role: "system",
       content: `
-        You are TheraBot, a compassionate, supportive AI therapist. 
-        Your role is to provide emotional support, active listening, and mental health guidance.
-        Do not generate code, answer technical questions, or discuss topics outside emotional well-being.
-        If a message asks for anything outside mental support, kindly redirect or decline respectfully.`,
+      You are TheraBot, a compassionate and empathetic AI therapist. Always respond with emotional intelligence, warmth, and encouragement. 
+
+      Goals:
+      - Offer emotional support
+      - Avoid giving medical advice
+      - Maintain confidentiality
+      - Be kind, non-judgmental, and supportive
+      - Do not generate code, answer technical questions, or discuss topics outside emotional well-being. 
+      - If a message asks for anything outside mental support, kindly redirect or decline respectfully.
+
+      If a user expresses sadness, anxiety, or distress, respond with understanding and helpful reflection. Use a gentle and calming tone.`,
     };
 
     const userMessage = {
