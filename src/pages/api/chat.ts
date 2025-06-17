@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import OpenAI from "openai/index.mjs";
+import OpenAI from "openai";
 import Sentiment from "sentiment";
 
 const sentiment = new Sentiment();
@@ -11,6 +11,10 @@ export default async function handler(
   if (req.method !== "POST") {
     res.setHeader("Allow", ["POST"]);
     return res.status(405).json({ error: "Method not allowed!" });
+  }
+
+  if (!process.env.OPENAI_API_KEY) {
+    return res.status(500).json({ error: "Missing OpenAI API key." });
   }
 
   try {
