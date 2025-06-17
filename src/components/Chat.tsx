@@ -23,7 +23,10 @@ export default function Chat() {
         content: m.content,
       }));
 
-      const response = await axios.post("/api/chat", { message, history });
+      const response = await axios.post(
+        process.env.NEXT_PUBLIC_API_URL + "/api/chat",
+        { message, history }
+      );
 
       setError("");
       setMessages([
