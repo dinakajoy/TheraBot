@@ -1,9 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import dotenv from "dotenv";
 import OpenAI from "openai/index.mjs";
 import Sentiment from "sentiment";
 
-dotenv.config();
 const sentiment = new Sentiment();
 
 export default async function handler(
